@@ -20,7 +20,7 @@ type infoSpecies struct {
 	Genus          string `json:"genus"`
 	ScientificName string `json:"scientificName"`
 	CanonicalName  string `json:"canonicalName"`
-	BracketYear    string `json:"bracketYear"`
+	Year           string `json:"year"`
 }
 
 // main function, gets the URL string and the ResponseWriter
