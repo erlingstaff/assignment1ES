@@ -1,3 +1,3 @@
-module github.com/TutorialEdge/go-modules-tutorial
+module assig1
 
 go 1.13
