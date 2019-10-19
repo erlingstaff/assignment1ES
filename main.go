@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -42,5 +43,10 @@ func main() {
 	http.HandleFunc("/conservation/v1/country/", countryHandler) //3 different handlers
 	http.HandleFunc("/conservation/v1/species/", speciesHandler)
 	http.HandleFunc("/conservation/v1/diag/", diagHandler)
-	log.Fatal(http.ListenAndServe(":5067", nil)) //server on port 5067
+	port := os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(":"+port, nil)) //server on port 5067
 }
+
+//if port == "" {
+//	return "", fmt.Errorf("$PORT NOT SET")
+//return ":" + port, nil
