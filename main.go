@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 )
-
+//abv
 var seconds int //global value to store starttime of the server in UNIX time
 
 func countryHandler(w http.ResponseWriter, r *http.Request) {
