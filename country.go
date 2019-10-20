@@ -17,21 +17,11 @@ type countryInfo struct {
 	Name       string
 	Alpha2code string
 	Flag       string
-	Offset     int
 	Results    []struct { //2nd struct inside main struct to get species info
 		Species    string `json:"species"`
 		SpeciesKey int    `json:"speciesKey"`
 	} `json:"Results"`
-	//ArrayStringTest  []string `json:"species"`
-	//ArrayStringTest2 []string `json:"speciesKey"`
 }
-
-/*type spfo struct {
-	Results []struct {
-		Species    string `json:"species"`
-		SpeciesKey int    `json:"speciesKey"`
-	}
-}*/
 
 func getData(urlServer string, w http.ResponseWriter, limit string) {
 	parts := strings.Split(urlServer, "/")
@@ -43,8 +33,7 @@ func getData(urlServer string, w http.ResponseWriter, limit string) {
 		fmt.Fprintf(w, "520"+http.StatusText(520))
 		return
 	}
-	defer resp.Body.Close() //close connection
-	//spf := &spfo{}
+	defer resp.Body.Close()                     //close connection
 	ci := &countryInfo{}                        //pointer to a struct
 	err = json.NewDecoder(resp.Body).Decode(ci) //decoding into pointer
 	if err != nil {                             //checking for errors
@@ -52,11 +41,6 @@ func getData(urlServer string, w http.ResponseWriter, limit string) {
 		fmt.Fprintf(w, "500"+http.StatusText(500)) //it is an issue with their API
 		return
 	}
-	/*err = json.NewDecoder(resp.Body).Decode(spf)
-	if err != nil {
-		fmt.Println("Error with Decoder!")
-		fmt.Fprintf(w, "500"+http.StatusText(500))
-	}*/
 	number, err := strconv.Atoi(limit) //converting "number" from limit to an int to get the queried limit
 	if err != nil {                    //checking for error, code 500
 		fmt.Println("Error with strconv")
